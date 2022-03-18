@@ -9,6 +9,10 @@ screen = pygame.display.set_mode([500, 500])
 
 c = cube.Cube()
 
+wait = 300
+
+last = pygame.time.get_ticks()
+
 running = True
 while running:
 
@@ -17,6 +21,12 @@ while running:
             running = False
 
     screen.fill(colors.BLACK)
+
+    now = pygame.time.get_ticks()
+    if now - last > wait:
+        last = now
+        c.f()
+        c.u()
 
     c.draw_cube(screen)
 
