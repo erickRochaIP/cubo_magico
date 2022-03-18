@@ -18,6 +18,15 @@ class Cube:
             [[colors.ORANGE for i in range(3)] for j in range(3)],
         ]
 
+    def check_solved(self):
+        c = self.squares
+        for i in range(3):
+            for j in range(3):
+                if c[0][i][j] != colors.WHITE or c[1][i][j] != colors.BLUE or c[2][i][j] != colors.YELLOW or c[3][i][j] != colors.GREEN or c[4][i][j] != colors.RED or c[5][i][j] != colors.ORANGE:
+                    return False
+
+        return True
+
     """
     Rotating functions
     """

@@ -5,11 +5,16 @@ import cube
 
 pygame.init()
 
+pygame.font.init()  # you have to call this at the start,
+# if you want to use this module.
+myfont = pygame.font.SysFont('Comic Sans MS', 30)
+
 screen = pygame.display.set_mode([500, 500])
 
 c = cube.Cube()
 
 wait = 300
+tries = 0
 
 last = pygame.time.get_ticks()
 
@@ -25,8 +30,13 @@ while running:
     now = pygame.time.get_ticks()
     if now - last > wait:
         last = now
-        c.f()
-        c.u()
+        if not c.check_solved() or tries == 0:
+            c.ra()
+            c.u()
+            tries += 1
+
+    textsurface = myfont.render(str(tries), False, (100, 100, 100))
+    screen.blit(textsurface, (0, 0))
 
     c.draw_cube(screen)
 
