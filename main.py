@@ -1,11 +1,13 @@
 import pygame
 import colors
-import functions
+import cube
 
 
 pygame.init()
 
 screen = pygame.display.set_mode([500, 500])
+
+c = cube.Cube()
 
 running = True
 while running:
@@ -16,7 +18,7 @@ while running:
 
     screen.fill(colors.BLACK)
 
-    functions.draw_cube(screen)
+    c.draw_cube(screen)
 
     # Flip the display
     pygame.display.flip()
