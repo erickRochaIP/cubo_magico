@@ -17,6 +17,20 @@ class Cube:
             [[colors.RED for i in range(3)] for j in range(3)],
             [[colors.ORANGE for i in range(3)] for j in range(3)],
         ]
+        self.steps = {
+            "r": self.r,
+            "r'": self.ra,
+            "l": self.l,
+            "l'": self.la,
+            "f": self.f,
+            "f'": self.fa,
+            "b": self.b,
+            "b'": self.ba,
+            "d": self.d,
+            "d'": self.da,
+            "u": self.u,
+            "u'": self.ua,
+        }
 
     def check_solved(self):
         c = self.squares
@@ -148,6 +162,11 @@ class Cube:
         f = self.squares[face]
 
         f[2][0], f[1][0], f[0][0], f[0][1], f[0][2], f[1][2], f[2][2], f[2][1] = f[0][0], f[0][1], f[0][2], f[1][2], f[2][2], f[2][1], f[2][0], f[1][0]
+
+    def execute_algo(self, algo):
+        for step in algo.split('-'):
+            if step in self.steps:
+                self.steps[step]()
 
     """
     Drawing functions

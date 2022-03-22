@@ -13,8 +13,10 @@ screen = pygame.display.set_mode([500, 500])
 
 c = cube.Cube()
 
-wait = 300
-tries = 0
+algo = "f-u"
+
+wait = 100
+steps = 0
 
 last = pygame.time.get_ticks()
 
@@ -30,12 +32,11 @@ while running:
     now = pygame.time.get_ticks()
     if now - last > wait:
         last = now
-        if not c.check_solved() or tries == 0:
-            c.ra()
-            c.u()
-            tries += 1
+        if not c.check_solved() or steps == 0:
+            c.execute_algo(algo)
+            steps += 1
 
-    textsurface = myfont.render(str(tries), False, (100, 100, 100))
+    textsurface = myfont.render(str(steps), False, (100, 100, 100))
     screen.blit(textsurface, (0, 0))
 
     c.draw_cube(screen)
